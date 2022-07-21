@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 
+import 'dummy_data.dart';
+import 'category_item.dart';
+
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GridView(
-      //создаем сетку
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-        mainAxisExtent: 200, //макс ширина
-        childAspectRatio: 3 / 2, // соотношение сторон
-        crossAxisSpacing: 20, //отступы
-        mainAxisSpacing: 20,
+    return Scaffold(
+      appBar: AppBar(title: Text('GridView')),
+      body: GridView(
+        padding: EdgeInsets.all(25),
+        children: DUMMY_CATEGORIES
+            .map((catData) =>
+                CategoryItem(title: catData.title, color: catData.color))
+            .toList(),
+        //создаем сетку
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+        ),
       ),
-      children: <Widget>[],
     );
   }
 }
