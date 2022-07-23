@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './screens/meal_dedail.screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/categories_screen.dart';
 
@@ -14,12 +15,12 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.amber,
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
-        // textTheme: ThemeData.light().textTheme.copyWith(
-        //       headline6: TextStyle(
-        //         fontFamily: 'RobotoCondensed',
-        //         fontSize: 24,
-        //       ),
-        //     ),
+        textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: TextStyle(
+                // fontFamily: 'RobotoCondensed',
+                fontSize: 24,
+              ),
+            ),
       ),
       // home: CategoriesScreen(),
       initialRoute: '/', //главная страница
@@ -30,7 +31,19 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => CategoriesScreen(),
 
         //экран подкатегории
-        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen()
+        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (context) => MealDetailScreen()
+      },
+      // onGenerateRoute: (setting) {
+      //   print(setting.arguments);
+      //   return MaterialPageRoute(
+      //     builder: ((ctx) => CategoriesScreen()),
+      //   );
+      // },
+      onUnknownRoute: (setting) {
+        return MaterialPageRoute(
+          builder: ((ctx) => CategoriesScreen()),
+        );
       },
     );
   }
